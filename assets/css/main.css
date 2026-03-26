@@ -920,6 +920,9 @@ section,
 .hero .hero-content {
   position: relative;
   z-index: 2;
+  text-align: center;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .hero .hero-content .hero-tag {
@@ -976,7 +979,9 @@ section,
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 25%);
   margin-bottom: 40px;
-  max-width: 520px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 768px) {
@@ -989,6 +994,7 @@ section,
 .hero .hero-content .hero-cta {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
 }
@@ -1053,10 +1059,17 @@ section,
 
 .hero .stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   position: relative;
   z-index: 2;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1199px) {
+  .hero .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 576px) {
@@ -1072,6 +1085,7 @@ section,
   border-radius: 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
   transition: all 0.3s ease;
@@ -1165,17 +1179,7 @@ section,
   }
 
   .hero .hero-content {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-
-  .hero .hero-content .hero-text {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero .hero-content .hero-cta {
-    justify-content: center;
+    max-width: 100%;
   }
 }
 
