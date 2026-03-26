@@ -1059,16 +1059,20 @@ section,
 
 .hero .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
   position: relative;
   z-index: 2;
   margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 1199px) {
   .hero .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
 }
 
@@ -1081,7 +1085,7 @@ section,
 
 .hero .stats-grid .stat-card {
   background: var(--surface-color);
-  padding: 28px 24px;
+  padding: 24px 28px;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -1089,6 +1093,7 @@ section,
   gap: 16px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
   transition: all 0.3s ease;
+  min-height: 110px;
 }
 
 .hero .stats-grid .stat-card:hover {
