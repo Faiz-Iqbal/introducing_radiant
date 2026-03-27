@@ -105,6 +105,157 @@
   window.addEventListener('load', aosInit);
 
   /**
+   * Hero waveform canvas animation
+   */
+  function initHeroWaveform() {
+    const canvas = document.querySelector('#hero-waveform-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let rafId = null;
+
+    const layers = [
+      { color: 'rgba(201, 165, 76, 0.68)', amplitude: 0.23, frequency: 0.017, speed: 0.0017, lineWidth: 2.6 },
+      { color: 'rgba(229, 201, 123, 0.56)', amplitude: 0.17, frequency: 0.023, speed: 0.0022, lineWidth: 2.1 },
+      { color: 'rgba(242, 226, 182, 0.42)', amplitude: 0.12, frequency: 0.031, speed: 0.0028, lineWidth: 1.7 }
+    ];
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const nextWidth = Math.max(1, rect.width);
+      const nextHeight = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      width = nextWidth;
+      height = nextHeight;
+      canvas.width = Math.floor(nextWidth * dpr);
+      canvas.height = Math.floor(nextHeight * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw(time) {
+      const mobileScale = width < 768 ? 0.75 : 1;
+      const xStep = width < 768 ? 5 : 4;
+      const halfHeight = height * 0.5;
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
+        const amp = height * layer.amplitude * mobileScale;
+        const phase = time * layer.speed;
+
+        ctx.beginPath();
+        ctx.strokeStyle = layer.color;
+        ctx.lineWidth = layer.lineWidth * mobileScale;
+
+        for (let x = 0; x <= width; x += xStep) {
+          const waveA = Math.sin((x * layer.frequency) + phase);
+          const waveB = Math.sin((x * (layer.frequency * 0.42)) - (phase * 1.25));
+          const y = halfHeight + (waveA * amp) + (waveB * amp * 0.28);
+
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.stroke();
+      }
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function start() {
+      if (rafId || reducedMotion.matches || document.hidden) return;
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function stop() {
+      if (!rafId) return;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    function drawReduced() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
+        const amp = height * layer.amplitude * 0.55;
+
+        ctx.beginPath();
+        ctx.strokeStyle = layer.color;
+        ctx.lineWidth = layer.lineWidth;
+
+        for (let x = 0; x <= width; x += 5) {
+          const y = (height * 0.5) + Math.sin(x * layer.frequency) * amp;
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.stroke();
+      }
+    }
+
+    function handleVisibility() {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    }
+
+    function handleReducedMotionChange() {
+      if (reducedMotion.matches) {
+        stop();
+        drawReduced();
+      } else {
+        start();
+      }
+    }
+
+    resizeCanvas();
+    if (reducedMotion.matches) {
+      drawReduced();
+    } else {
+      start();
+    }
+
+    let resizeRaf;
+    window.addEventListener('resize', () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        resizeCanvas();
+        if (reducedMotion.matches) drawReduced();
+      });
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    if (typeof reducedMotion.addEventListener === 'function') {
+      reducedMotion.addEventListener('change', handleReducedMotionChange);
+    } else if (typeof reducedMotion.addListener === 'function') {
+      reducedMotion.addListener(handleReducedMotionChange);
+    }
+  }
+  window.addEventListener('load', initHeroWaveform);
+
+  /**
    * Initiate glightbox
    */
   const glightbox = GLightbox({

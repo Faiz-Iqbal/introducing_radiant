@@ -19,37 +19,49 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #f1f5f9; /* Background color for the entire website, including individual sections */
-  --default-color: #475569; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #1e293b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #e6c550; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --background-color: #f7f7f6; /* Background color for the entire website, including individual sections */
+  --default-color: #1f1f1f; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #0a0a0a; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #c6a452; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-secondary: #8e742f; /* Secondary accent color used for gradients and decorative highlights */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --error-color: #9f2f3b; /* Error state color for forms and alerts */
+  --success-color: #2f6a43; /* Success state color for forms and confirmations */
+  --warning-color: #a77013; /* Warning state color for notices and badges */
+  --notice-color: #8e742f; /* Notice/info state color for supporting callouts */
+  --danger-color: #dc2626; /* Restriction/critical state color */
+  --shadow-color: #111111; /* Shared shadow tone for layered components */
+  --overlay-color-dark: rgba(7, 7, 7, 0.8); /* Overlay used behind mobile navigation and modal-like surfaces */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #475569;  /* The default color of the main navmenu links */
-  --nav-hover-color: #e6c550; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-color: #202020;  /* The default color of the main navmenu links */
+  --nav-hover-color: #c6a452; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #475569; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #e6c550; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-color: #202020; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #c6a452; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
-  --background-color: #f9f9f9;
+  --background-color: #f1f1ef;
   --surface-color: #ffffff;
 }
 
 .dark-background {
-  --background-color: #0d131f;
-  --default-color: #ffffff;
+  --background-color: #0a0a0a;
+  --default-color: #ececec;
   --heading-color: #ffffff;
-  --surface-color: #1e293b;
+  --accent-color: #c6a452;
+  --accent-secondary: #e3cc8f;
+  --surface-color: #151515;
   --contrast-color: #ffffff;
+  --shadow-color: #000000;
+  --overlay-color-dark: rgba(0, 0, 0, 0.86);
 }
 
 /* Smooth scroll */
@@ -91,8 +103,8 @@ h6 {
 ------------------------------*/
 .php-email-form .error-message {
   display: none;
-  background: #df1529;
-  color: #ffffff;
+  background: var(--error-color);
+  color: var(--contrast-color);
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
@@ -101,8 +113,8 @@ h6 {
 
 .php-email-form .sent-message {
   display: none;
-  color: #ffffff;
-  background: #059652;
+  color: var(--contrast-color);
+  background: var(--success-color);
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -273,7 +285,7 @@ h6 {
     transition: 0.3s;
     border-radius: 4px;
     z-index: 99;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 30px color-mix(in srgb, var(--shadow-color), transparent 88%);
   }
 
   .navmenu .dropdown ul li {
@@ -345,7 +357,7 @@ h6 {
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 30px color-mix(in srgb, var(--shadow-color), transparent 88%);
   }
 
   .navmenu a,
@@ -409,12 +421,12 @@ h6 {
   }
 
   .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
+    background-color: color-mix(in srgb, var(--heading-color), transparent 90%);
   }
 
   .navmenu .dropdown>.dropdown-active {
     display: block;
-    background-color: rgba(33, 37, 41, 0.03);
+    background-color: color-mix(in srgb, var(--heading-color), transparent 97%);
   }
 
   .mobile-nav-active {
@@ -422,7 +434,7 @@ h6 {
   }
 
   .mobile-nav-active .mobile-nav-toggle {
-    color: #fff;
+    color: var(--contrast-color);
     position: absolute;
     font-size: 32px;
     top: 15px;
@@ -435,7 +447,7 @@ h6 {
     position: fixed;
     overflow: hidden;
     inset: 0;
-    background: rgba(33, 37, 41, 0.8);
+    background: var(--overlay-color-dark);
     transition: 0.3s;
   }
 
@@ -889,10 +901,11 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
+  --hero-surface-gradient: linear-gradient(135deg, var(--background-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%);
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--background-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%);
+  background: var(--hero-surface-gradient);
 }
 
 .hero::before {
@@ -1055,6 +1068,58 @@ section,
 
 .hero .hero-content .hero-cta .cta-link:hover i {
   transform: scale(1.1);
+}
+
+.hero .hero-content>*:not(.hero-waveform) {
+  position: relative;
+  z-index: 3;
+}
+
+.hero .hero-waveform {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 180px;
+  margin: 0 auto 40px;
+  background: var(--hero-surface-gradient);
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+
+.hero .hero-waveform-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  display: block;
+  opacity: 0.72;
+  filter: blur(0.2px);
+}
+
+.hero .hero-waveform::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+  color-mix(in srgb, var(--background-color), transparent 3%) 0%,
+  transparent 34%,
+  transparent 66%,
+  color-mix(in srgb, var(--background-color), transparent 3%) 100%);
+}
+
+@media (max-width: 768px) {
+  .hero .hero-waveform {
+    height: 140px;
+    margin-bottom: 34px;
+  }
+
+  .hero .hero-waveform-canvas {
+    opacity: 0.64;
+  }
 }
 
 .hero .stats-grid {
@@ -1937,7 +2002,7 @@ section,
   top: 16px;
   right: 16px;
   padding: 8px 14px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color) 70%, #ff6b6b));
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
   color: var(--contrast-color);
   font-size: 11px;
   font-weight: 700;
@@ -2017,7 +2082,7 @@ section,
 .portfolio .cta-section {
   margin-top: 80px;
   padding: 64px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color) 70%, #6366f1));
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
   border-radius: 24px;
   position: relative;
   overflow: hidden;
@@ -2241,7 +2306,7 @@ section,
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6366f1 30%));
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
   color: var(--contrast-color);
   border-radius: 24px;
   font-size: 13px;
@@ -2334,7 +2399,7 @@ section,
 }
 
 .why-us .sidebar-content .action-buttons .btn-main:hover {
-  background: color-mix(in srgb, var(--accent-color), #000 15%);
+  background: color-mix(in srgb, var(--accent-color), var(--heading-color) 15%);
   transform: translateY(-2px);
   box-shadow: 0 12px 28px color-mix(in srgb, var(--accent-color), transparent 55%);
 }
@@ -2440,7 +2505,7 @@ section,
 .why-us .features-grid .feature-box .feature-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #a855f7 40%));
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -2813,7 +2878,7 @@ section,
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #9333ea 40%));
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -2841,7 +2906,7 @@ section,
 }
 
 .testimonials .testimonial-card .card-top .stars i {
-  color: #f59e0b;
+  color: var(--warning-color);
   font-size: 16px;
 }
 
@@ -3411,7 +3476,7 @@ section,
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, transparent 0%, color-mix(in srgb, #000 15%, transparent) 100%);
+  background: linear-gradient(135deg, transparent 0%, color-mix(in srgb, var(--shadow-color) 15%, transparent) 100%);
   pointer-events: none;
 }
 
@@ -3759,7 +3824,7 @@ section,
 }
 
 .contact .form-card .php-email-form .form-actions .btn-submit:hover {
-  background: color-mix(in srgb, var(--accent-color) 85%, #000);
+  background: color-mix(in srgb, var(--accent-color) 85%, var(--heading-color));
   transform: translateY(-4px);
   box-shadow: 0 12px 32px color-mix(in srgb, var(--accent-color) 40%, transparent);
 }
@@ -5330,31 +5395,31 @@ section,
 }
 
 .terms-of-service .highlight-card.warning {
-  background-color: color-mix(in srgb, #f59e0b, transparent 92%);
+  background-color: color-mix(in srgb, var(--warning-color), transparent 92%);
 }
 
 .terms-of-service .highlight-card.warning .card-icon {
-  background-color: color-mix(in srgb, #f59e0b, transparent 80%);
+  background-color: color-mix(in srgb, var(--warning-color), transparent 80%);
 }
 
 .terms-of-service .highlight-card.warning .card-icon i {
-  color: #d97706;
+  color: var(--warning-color);
 }
 
 .terms-of-service .highlight-card.warning h5 {
-  color: #b45309;
+  color: color-mix(in srgb, var(--warning-color), var(--heading-color) 20%);
 }
 
 .terms-of-service .highlight-card.notice {
-  background-color: color-mix(in srgb, #8b5cf6, transparent 92%);
+  background-color: color-mix(in srgb, var(--notice-color), transparent 92%);
 }
 
 .terms-of-service .highlight-card.notice .card-icon {
-  background-color: color-mix(in srgb, #8b5cf6, transparent 80%);
+  background-color: color-mix(in srgb, var(--notice-color), transparent 80%);
 }
 
 .terms-of-service .highlight-card.notice .card-icon i {
-  color: #7c3aed;
+  color: var(--notice-color);
 }
 
 .terms-of-service .checklist {
@@ -5407,14 +5472,14 @@ section,
   align-items: flex-start;
   gap: 14px;
   padding: 20px;
-  background-color: color-mix(in srgb, #ef4444, transparent 96%);
+  background-color: color-mix(in srgb, var(--danger-color), transparent 96%);
   border-radius: 10px;
-  border: 1px solid color-mix(in srgb, #ef4444, transparent 85%);
+  border: 1px solid color-mix(in srgb, var(--danger-color), transparent 85%);
 }
 
 .terms-of-service .restrictions-grid .restriction-card i {
   font-size: 1.25rem;
-  color: #dc2626;
+  color: var(--danger-color);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -5494,7 +5559,7 @@ section,
   justify-content: space-between;
   gap: 32px;
   padding: 40px;
-  background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), #000 20%) 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), var(--heading-color) 20%) 100%);
   border-radius: 16px;
 }
 
@@ -5563,7 +5628,7 @@ section,
 
 .terms-of-service .terms-footer .footer-content .footer-actions .btn-primary-action:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px color-mix(in srgb, #000, transparent 80%);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--shadow-color), transparent 80%);
 }
 
 .terms-of-service .terms-footer .footer-content .footer-actions .btn-secondary-action {
@@ -6241,7 +6306,7 @@ section,
 }
 
 .error-404 .error-content .action-buttons .btn-home:hover {
-  background-color: color-mix(in srgb, var(--accent-color), #000 15%);
+  background-color: color-mix(in srgb, var(--accent-color), var(--heading-color) 15%);
   transform: translateX(-4px);
 }
 

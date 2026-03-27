@@ -27,6 +27,169 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+    :root {
+      --accent-color-rgb: 230, 197, 80;
+    }
+
+    .service-card:hover .icon-wrapper i {
+      animation: icon-bounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+
+    @keyframes icon-bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-6px);
+      }
+
+      60% {
+        transform: translateY(-2px);
+      }
+    }
+
+    .feature-box:hover .feature-icon i {
+      animation: icon-spin-once 0.6s ease-in-out;
+    }
+
+    @keyframes icon-spin-once {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(20deg) scale(1.2);
+      }
+
+      100% {
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    .stat-value {
+      transition: color 0.3s ease;
+    }
+
+    .stat-card:hover .stat-value {
+      color: var(--accent-color);
+      text-shadow: 0 0 18px rgba(var(--accent-color-rgb), 0.25);
+    }
+
+    .service-card {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
+    }
+
+    .capability-card {
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .capability-card:hover {
+      border-left-color: var(--accent-color);
+      transform: translateX(4px);
+    }
+
+    .step-marker {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background-color 0.3s ease;
+    }
+
+    .timeline-step:hover .step-marker {
+      transform: scale(1.25);
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+
+    .hero,
+    .about,
+    .services,
+    .why-us {
+      position: relative;
+    }
+
+    .hero::after,
+    .about::after,
+    .services::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--accent-color) 40%,
+        var(--accent-color) 60%,
+        transparent 100%
+      );
+      opacity: 0.15;
+      margin: 0 10%;
+    }
+
+    .brand-logo-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      min-height: 148px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 26px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .brand-logo-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(var(--accent-color-rgb), 0.5);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-logo-slot {
+      width: 100%;
+      max-width: 170px;
+      height: 64px;
+      border: 1px dashed rgba(var(--accent-color-rgb), 0.65);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, rgba(var(--accent-color-rgb), 0.11) 0%, rgba(var(--accent-color-rgb), 0.03) 100%);
+    }
+
+    .brands-note {
+      margin-top: 12px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.66);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-card,
+      .capability-card,
+      .step-marker,
+      .stat-value,
+      .service-card:hover .icon-wrapper i,
+      .feature-box:hover .feature-icon i {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: Orbit
   * Template URL: https://bootstrapmade.com/orbit-bootstrap-template/
@@ -50,8 +213,10 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#services">Services</a></li>
           <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Brands</a></li>
+          <li><a href="#why-us">Why Us</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -78,50 +243,12 @@
                 <span class="tag-text">AI Automation Solutions</span>
               </div>
 
-              <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="300">Automate Success. Accelerate Profits.</h1>
+              <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="300">Smarter Systems. Faster Growth.</h1>
 
-              <p class="hero-text" data-aos="fade-up" data-aos-delay="350">Revolutionize your workflow with cutting-edge AI solutions that capture leads, engage customers, and scale your operations around the clock.</p>
+              <p class="hero-text" data-aos="fade-up" data-aos-delay="350">Radiant AI deploys voice agents and automation systems that handle your inbound calls, follow up with leads, and book appointments — 24 hours a day, without adding headcount.</p>
 
-              <div class="stats-grid" data-aos="fade-up" data-aos-delay="400">
-                <div class="stat-card stat-card-primary" data-aos="zoom-in" data-aos-delay="450">
-                  <div class="stat-icon-wrap">
-                    <i class="bi bi-people-fill"></i>
-                  </div>
-                  <div class="stat-info">
-                    <span class="stat-value">50k+</span>
-                    <span class="stat-title">Leads Captured via AI</span>
-                  </div>
-                </div>
-
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="500">
-                  <div class="stat-icon-wrap">
-                    <i class="bi bi-heart"></i>
-                  </div>
-                  <div class="stat-info">
-                    <span class="stat-value">4.9</span>
-                    <span class="stat-title">Client Satisfaction</span>
-                  </div>
-                </div>
-
-                <div class="stat-card" data-aos="zoom-in" data-aos-delay="550">
-                  <div class="stat-icon-wrap">
-                    <i class="bi bi-gear"></i>
-                  </div>
-                  <div class="stat-info">
-                    <span class="stat-value">75%</span>
-                    <span class="stat-title">Operational Workload Automated</span>
-                  </div>
-                </div>
-
-                <div class="stat-card stat-card-accent" data-aos="zoom-in" data-aos-delay="600">
-                  <div class="stat-icon-wrap">
-                    <i class="bi bi-headset"></i>
-                  </div>
-                  <div class="stat-info">
-                    <span class="stat-value">24/7</span>
-                    <span class="stat-title">AI Chat &amp; Voice Availability</span>
-                  </div>
-                </div>
+              <div class="hero-waveform" data-aos="fade-up" data-aos-delay="400" aria-hidden="true">
+                <canvas id="hero-waveform-canvas" class="hero-waveform-canvas"></canvas>
               </div>
 
               <div class="hero-cta" data-aos="fade-up" data-aos-delay="650">
@@ -131,7 +258,7 @@
                 </a>
                 <a href="#contact" class="cta-link">
                   <i class="bi bi-chat-dots"></i>
-                  <span>Contact Us</span>
+                  <span>Book a Discovery Call</span>
                 </a>
               </div>
             </div>
@@ -159,8 +286,8 @@
                 <img src="assets/img/about/about-square-3.webp" alt="Detail shot" class="img-fluid">
               </div>
               <div class="experience-badge">
-                <span class="years purecounter" data-purecounter-start="0" data-purecounter-end="95" data-purecounter-duration="1">95</span>
-                <span class="text">Faster Client<br>Response Time</span>
+                <span class="years purecounter" data-purecounter-start="0" data-purecounter-end="60" data-purecounter-duration="1">60</span>
+                <span class="text">Second Avg. AI Response Time</span>
               </div>
               <div class="shape-pattern"></div>
             </div>
@@ -168,31 +295,31 @@
 
           <div class="col-xl-6 aos-init aos-animate" data-aos="fade-left" data-aos-delay="300">
             <div class="about-content">
-              <div class="section-subtitle">Focus On What Matters</div>
-              <h2>AI wont replace you, people using AI will.</h2>
+              <div class="section-subtitle">Why Automation Wins</div>
+              <h2>Your competitors are already using AI to answer faster, follow up longer, and close more.</h2>
               <p class="lead-text">
-                Transform how you manage leads, clients, and deals with smarter, automated processes.
+                Most businesses lose leads in the first 5 minutes after enquiry — simply because no one picked up.
               </p>
               <p class="mb-4 description">
-                Let automation handle repetitive operations while your team focuses on growth, relationships, and closing more opportunities.
+                Our AI voice agents respond instantly, qualify callers using your exact sales process, and hand off hot leads to your team or book them directly into your calendar. No scripts to manage. No staff to train.
               </p>
 
               <div class="features-grid">
                 <div class="feature-card">
                   <i class="bi bi-check-circle-fill"></i>
-                  <span>Automate Repetitive Tasks</span>
+                  <span>Instant Lead Response (under 60s)</span>
                 </div>
                 <div class="feature-card">
                   <i class="bi bi-check-circle-fill"></i>
-                  <span>Cut Operational Costs</span>
+                  <span>Voice Agents Trained on Your Business</span>
                 </div>
                 <div class="feature-card">
                   <i class="bi bi-check-circle-fill"></i>
-                  <span>Boost Lead Conversion</span>
+                  <span>CRM &amp; Calendar Sync Included</span>
                 </div>
                 <div class="feature-card">
                   <i class="bi bi-check-circle-fill"></i>
-                  <span>Focus on What Matters</span>
+                  <span>Full Call Recording &amp; Analytics</span>
                 </div>
               </div>
 
@@ -241,7 +368,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
-        <p>The Future is Automated. Make It Yours Today.</p>
+        <p>Six systems. One goal — more revenue with less effort.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -255,7 +382,7 @@
                 <i class="bi bi-telephone-forward"></i>
               </div>
               <h3>AI Calling Agent</h3>
-              <p>Never miss a lead.</p>
+              <p>A voice agent that answers, qualifies, and routes inbound calls using your exact sales script. Never lose a hot lead to voicemail again.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -270,7 +397,7 @@
                 <i class="bi bi-chat-dots"></i>
               </div>
               <h3>AI Chatbot</h3>
-              <p>Engage instantly. Save time.</p>
+              <p>A trained chatbot for your website or WhatsApp that captures leads, answers questions, and pre-qualifies prospects around the clock.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -289,7 +416,7 @@
                 <i class="bi bi-megaphone"></i>
               </div>
               <h3>Automated Outreach</h3>
-              <p>Reach more. Close faster.</p>
+              <p>Multi-step email and SMS sequences that follow up with prospects automatically based on behaviour. More reach, less manual effort.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -304,7 +431,7 @@
                 <i class="bi bi-person-check"></i>
               </div>
               <h3>Lead Capture &amp; CRM</h3>
-              <p>Capture leads. Drive sales.</p>
+              <p>AI-powered forms and CRM pipelines that capture every enquiry and move leads through your funnel without manual data entry.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -319,7 +446,7 @@
                 <i class="bi bi-calendar-check"></i>
               </div>
               <h3>Appointment Setting</h3>
-              <p>Effortless scheduling. Always on.</p>
+              <p>Your AI agent calls, qualifies, and books meetings directly into your team's calendar — no human touchpoint required.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -334,7 +461,7 @@
                 <i class="bi bi-diagram-3"></i>
               </div>
               <h3>Custom AI Workflow</h3>
-              <p>Streamline work. Scale fast.</p>
+              <p>We map your operations and build end-to-end automations that cut admin time, reduce errors, and scale as your business grows.</p>
               <a href="#contact" class="service-link">
                 <span>Learn More</span>
                 <i class="bi bi-arrow-right"></i>
@@ -356,19 +483,19 @@
             <div class="col-6 col-md-3">
               <div class="stat-item">
                 <span class="stat-number">24/7</span>
-                <span class="stat-label">AI Chat &amp; Voice Availability</span>
+                <span class="stat-label">Voice &amp; Chat Active</span>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="stat-item">
                 <span class="stat-number">95%</span>
-                <span class="stat-label">Faster Client Response Time</span>
+                <span class="stat-label">Faster Lead Response</span>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="stat-item">
                 <span class="stat-number">12x</span>
-                <span class="stat-label">Sales Funnel Conversion Boost</span>
+                <span class="stat-label">Sales Conversion Uplift</span>
               </div>
             </div>
           </div>
@@ -383,14 +510,47 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Trusted by Leading Brands Around the World</h2>
-        <p>Click on any logo to visit the client's site and experience the AI in action.</p>
+        <h2>Brands We've Worked With</h2>
+        <p>We have implemented AI systems for teams across property, finance, SaaS, and service-led businesses.</p>
       </div>
       <!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <!-- Add portfolio code here -->
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="120">
+            <div class="brand-logo-slot">Add Logo 01</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="170">
+            <div class="brand-logo-slot">Add Logo 02</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="220">
+            <div class="brand-logo-slot">Add Logo 03</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="270">
+            <div class="brand-logo-slot">Add Logo 04</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="320">
+            <div class="brand-logo-slot">Add Logo 05</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="brand-logo-card" data-aos="zoom-in" data-aos-delay="370">
+            <div class="brand-logo-slot">Add Logo 06</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="brands-note text-center" data-aos="fade-up" data-aos-delay="420">Replace each placeholder with your company logos when ready.</p>
 
         <div class="cta-section" data-aos="zoom-in" data-aos-delay="300">
           <div class="cta-content">
@@ -420,7 +580,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Why Choose RADIANT AI</h2>
-        <p>We build practical AI systems that reduce repetitive work, improve response speed, and help you convert more leads.</p>
+        <p>We don't sell AI tools. We build revenue systems around your actual workflow and stay until they perform.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -432,7 +592,7 @@
                 <span class="section-badge"><i class="bi bi-stars"></i> Our Difference</span>
               </div>
               <h2>Built for Businesses That Want Measurable Outcomes</h2>
-              <p class="description">From first contact to closed deal, we design automation around your real workflow. No unnecessary complexity, just systems that save time and improve performance from day one.</p>
+              <p class="description">Most AI tools give you software and leave you to figure it out. We audit your workflow, build the automation around your real sales process, and optimise it until the numbers move. Faster response, more bookings, lower cost-per-lead.</p>
 
               <div class="stat-cards">
                 <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
@@ -457,7 +617,7 @@
 
               <div class="action-buttons">
                 <a href="#contact" class="btn-main">Book a Discovery Call</a>
-                <a href="#services" class="btn-outline">See Features</a>
+                <a href="#services" class="btn-outline">See Our Services</a>
               </div>
             </div>
           </div>
@@ -470,8 +630,8 @@
                   <i class="bi bi-rocket-takeoff-fill"></i>
                 </div>
                 <div class="feature-content">
-                  <h4>Go Live in Weeks, Not Months</h4>
-                  <p>We deploy focused automation quickly so you start seeing operational and revenue impact without long delivery cycles.</p>
+                  <h4>Live in 2 Weeks, Not 6 Months</h4>
+                  <p>We run a focused discovery sprint, build your first automation, and deploy it fast. You see results before the invoice feels distant.</p>
                   <a href="#contact" class="feature-link">See The Plan <i class="bi bi-chevron-right"></i></a>
                 </div>
               </div><!-- End Feature Box -->
@@ -481,8 +641,8 @@
                   <i class="bi bi-bar-chart-line-fill"></i>
                 </div>
                 <div class="feature-content">
-                  <h4>Conversion-Focused Automation</h4>
-                  <p>Every workflow is designed to move leads forward, reduce drop-off, and make follow-up consistent across channels.</p>
+                  <h4>Built Around Your Sales Process</h4>
+                  <p>Every voice agent is trained on your scripts, your objections, and your CRM data. This isn't generic AI — it's your process, automated precisely.</p>
                   <a href="#contact" class="feature-link">See The Plan <i class="bi bi-chevron-right"></i></a>
                 </div>
               </div><!-- End Feature Box -->
@@ -492,8 +652,8 @@
                   <i class="bi bi-award-fill"></i>
                 </div>
                 <div class="feature-content">
-                  <h4>Hands-On Expert Support</h4>
-                  <p>You get direct access to the build team for updates, tuning, and strategic guidance as your business scales.</p>
+                  <h4>Dedicated Build Team, Not a Ticket Queue</h4>
+                  <p>You get direct access to the people who built your system. Changes, expansions, and performance tuning happen fast — no middleman, no delays.</p>
                   <a href="#contact" class="feature-link">See The Plan <i class="bi bi-chevron-right"></i></a>
                 </div>
               </div><!-- End Feature Box -->
@@ -543,22 +703,22 @@
                   <div class="capability-icon">
                     <i class="bi bi-bullseye"></i>
                   </div>
-                  <h6>AI Opportunity Mapping</h6>
-                  <p>We identify the highest-value automation points so your investment drives visible business results.</p>
+                  <h6>AI Opportunity Audit</h6>
+                  <p>We identify the highest-value automation points in your workflow so your investment drives visible, measurable business results from day one.</p>
                 </div>
                 <div class="capability-card">
                   <div class="capability-icon">
                     <i class="bi bi-code-slash"></i>
                   </div>
-                  <h6>Custom Workflow Automation</h6>
-                  <p>From lead capture to follow-up and booking, we tailor automations to match how your team already works.</p>
+                  <h6>Voice &amp; Chat Agent Build</h6>
+                  <p>From inbound call handling to lead qualification and booking, we build agents trained specifically on your business and your customers.</p>
                 </div>
                 <div class="capability-card">
                   <div class="capability-icon">
                     <i class="bi bi-arrow-repeat"></i>
                   </div>
-                  <h6>Ongoing Optimization</h6>
-                  <p>We monitor performance and continuously refine flows so your system gets better as volume grows.</p>
+                  <h6>Ongoing Performance Tuning</h6>
+                  <p>We monitor call quality, conversion rates, and workflow performance — and continuously refine until your system is running at its peak.</p>
                 </div>
               </div>
             </div>
@@ -757,102 +917,79 @@
   </main>
 
   <footer id="footer" class="footer light-background">
-
     <div class="container footer-top">
       <div class="row gy-4">
-        <div class="col-lg-3 col-md-6 footer-info">
-          <a href="index.html" class="logo d-flex align-items-center mb-4">
-            <span class="sitename">Orbit</span>
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center mb-3">
+            <img src="assets/img/RAI_Logo.png" alt="Radiant AI Logo" style="height:36px; margin-right:10px;">
+            <span class="sitename" style="font-weight:700;">RADIANT AI</span>
           </a>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-
-          <div class="social-links d-flex mt-4">
-            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <p style="font-size:14px; opacity:0.75; line-height:1.7;">
+            AI automation systems for businesses that want to grow without growing their headcount. Voice agents, chatbots, and workflows — built around your process.
+          </p>
+          <div class="social-links d-flex mt-3">
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
             <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Shop</h4>
+          <h4>Quick Links</h4>
           <ul>
-            <li><a href="category.html">New Arrivals</a></li>
-            <li><a href="category.html">Best Sellers</a></li>
-            <li><a href="category.html">Sale Items</a></li>
-            <li><a href="category.html">Men's Collection</a></li>
-            <li><a href="category.html">Women's Collection</a></li>
-            <li><a href="category.html">Accessories</a></li>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Customer Service</h4>
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
           <ul>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="faq.html">FAQs</a></li>
-            <li><a href="shiping-info.html">Shipping &amp; Returns</a></li>
-            <li><a href="#">Size Guide</a></li>
-            <li><a href="account.html">Track Order</a></li>
-            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#services">AI Calling Agent</a></li>
+            <li><a href="#services">AI Chatbot</a></li>
+            <li><a href="#services">Automated Outreach</a></li>
+            <li><a href="#services">Lead Capture & CRM</a></li>
+            <li><a href="#services">Appointment Setting</a></li>
+            <li><a href="#services">Custom AI Workflow</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="about.html">Careers</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">Sustainability</a></li>
-            <li><a href="about.html">Affiliate Program</a></li>
-            <li><a href="about.html">Store Locator</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-newsletter">
-            <h4>Stay Updated</h4>
-            <p>Subscribe to our newsletter for exclusive offers, new arrivals, and fashion tips.</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="position-relative">
-                <input type="email" name="email" placeholder="Your Email" required="">
-                <button type="submit" class="btn-subscribe"><i class="bi bi-arrow-right"></i></button>
-              </div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h4>Get In Touch</h4>
+          <p style="font-size:14px; margin-bottom:8px;">
+            <i class="bi bi-envelope me-2"></i>
+            <a href="mailto:hello@radiantaiautomation.com">hello@radiantaiautomation.com</a>
+          </p>
+          <p style="font-size:14px; margin-bottom:8px;">
+            <i class="bi bi-telephone me-2"></i>
+            <a href="tel:+35312337433">(+353) 12337433</a>
+          </p>
+          <p style="font-size:14px;">
+            <i class="bi bi-geo-alt me-2"></i> Ireland
+          </p>
         </div>
       </div>
     </div>
 
     <div class="container footer-bottom">
-      <div class="row gy-3">
+      <div class="row gy-3 align-items-center">
         <div class="col-md-6 order-2 order-md-1">
-          <div class="copyright">
-            <p>© <span>Copyright</span> <strong class="sitename">Orbit</strong>. All Rights Reserved.</p>
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
-          </div>
+          <p class="copyright mb-0">
+            © <span id="footer-year"></span> <strong>Radiant AI Automation.</strong> All Rights Reserved.
+          </p>
         </div>
-        <div class="col-md-6 order-1 order-md-2">
+        <div class="col-md-6 order-1 order-md-2 text-md-end">
           <div class="legal-links">
-            <a href="tos.html">Terms of Service</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="privacy.html">Cookies</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
           </div>
         </div>
       </div>
     </div>
-
+    <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
   </footer>
 
   <!-- Scroll Top -->
