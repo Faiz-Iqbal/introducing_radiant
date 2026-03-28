@@ -901,33 +901,18 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-  --hero-surface-gradient: linear-gradient(135deg, var(--background-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%);
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
-  background: var(--hero-surface-gradient);
+  background: var(--background-color);
 }
 
 .hero::before {
-  content: "";
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 50%;
-  height: 100%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent-color), transparent 92%) 0%, transparent 70%);
-  pointer-events: none;
+  content: none;
 }
 
 .hero::after {
-  content: "";
-  position: absolute;
-  top: 10%;
-  right: -5%;
-  width: 40%;
-  height: 80%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent-color), transparent 94%) 0%, transparent 60%);
-  pointer-events: none;
+  content: none;
 }
 
 .hero .hero-content {
@@ -967,6 +952,12 @@ section,
   line-height: 1.15;
   margin-bottom: 24px;
   color: var(--heading-color);
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.hero .hero-content .hero-headline.is-fading {
+  opacity: 0.05;
 }
 
 @media (max-width: 1200px) {
@@ -1078,14 +1069,15 @@ section,
 .hero .hero-waveform {
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
   height: 180px;
-  margin: 0 auto 40px;
-  background: var(--hero-surface-gradient);
+  margin: 0 calc(50% - 50vw) 40px;
+  background: var(--background-color);
   overflow: hidden;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .hero .hero-waveform-canvas {
@@ -1101,14 +1093,7 @@ section,
 }
 
 .hero .hero-waveform::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-  color-mix(in srgb, var(--background-color), transparent 3%) 0%,
-  transparent 34%,
-  transparent 66%,
-  color-mix(in srgb, var(--background-color), transparent 3%) 100%);
+  content: none;
 }
 
 @media (max-width: 768px) {
