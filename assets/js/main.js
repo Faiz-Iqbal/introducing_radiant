@@ -120,10 +120,11 @@
     let dpr = 1;
     let rafId = null;
 
+    const waveformColor = 'rgba(201, 165, 76, 0.72)';
     const layers = [
-      { color: 'rgba(201, 165, 76, 0.68)', amplitude: 0.23, frequency: 0.017, speed: 0.0017, lineWidth: 2.6 },
-      { color: 'rgba(229, 201, 123, 0.56)', amplitude: 0.17, frequency: 0.023, speed: 0.0022, lineWidth: 2.1 },
-      { color: 'rgba(242, 226, 182, 0.42)', amplitude: 0.12, frequency: 0.031, speed: 0.0028, lineWidth: 1.7 }
+      { color: waveformColor, amplitude: 0.23, frequency: 0.017, speed: 0.0017, lineWidth: 2.6 },
+      { color: waveformColor, amplitude: 0.17, frequency: 0.023, speed: 0.0022, lineWidth: 2.1 },
+      { color: waveformColor, amplitude: 0.12, frequency: 0.031, speed: 0.0028, lineWidth: 1.7 }
     ];
 
     function resizeCanvas() {
@@ -254,6 +255,36 @@
     }
   }
   window.addEventListener('load', initHeroWaveform);
+
+  /**
+   * Rotate hero headline phrases
+   */
+  function initHeroHeadlineCycle() {
+    const headline = document.querySelector('#hero-rotating-headline');
+    if (!headline) return;
+
+    const phrases = [
+      'Automate Success. Accelerate Profits.',
+      'Simplify the Work. Amplify the Wins.',
+      'Smarter Systems. Faster Growth'
+    ];
+
+    let index = Math.max(0, phrases.indexOf(headline.textContent.trim()));
+    const intervalMs = 4200;
+    const fadeMs = 700;
+
+    setInterval(() => {
+      index = (index + 1) % phrases.length;
+
+      headline.classList.add('is-fading');
+
+      setTimeout(() => {
+        headline.textContent = phrases[index];
+        headline.classList.remove('is-fading');
+      }, fadeMs);
+    }, intervalMs);
+  }
+  window.addEventListener('load', initHeroHeadlineCycle);
 
   /**
    * Initiate glightbox
