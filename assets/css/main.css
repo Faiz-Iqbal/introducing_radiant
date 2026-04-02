@@ -1015,9 +1015,18 @@ section,
 --------------------------------------------------------------*/
 .hero {
   padding: 120px 0 80px;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
   background: var(--background-color);
+}
+
+@supports not (height: 100svh) {
+  .hero {
+    min-height: 100vh;
+  }
 }
 
 .hero::before {
@@ -1063,10 +1072,17 @@ section,
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.15;
+  min-height: 1.15em;
   margin-bottom: 24px;
   color: var(--heading-color);
   opacity: 1;
   transition: opacity 0.7s ease;
+}
+
+@media (min-width: 992px) {
+  .hero .hero-content .hero-headline {
+    white-space: nowrap;
+  }
 }
 
 .hero .hero-content .hero-headline.is-fading {
