@@ -26,6 +26,7 @@
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const navMenu = document.querySelector('#navmenu');
 
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
@@ -35,6 +36,31 @@
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
+
+  /**
+   * Close mobile nav when clicking outside menu/toggle
+   */
+  document.addEventListener('click', (e) => {
+    if (!document.body.classList.contains('mobile-nav-active')) return;
+    if (!navMenu || !mobileNavToggleBtn) return;
+
+    const clickInsideMenu = navMenu.contains(e.target);
+    const clickToggle = mobileNavToggleBtn.contains(e.target);
+
+    if (!clickInsideMenu && !clickToggle) {
+      mobileNavToogle();
+    }
+  });
+
+  /**
+   * Close mobile nav on Escape key
+   */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (document.body.classList.contains('mobile-nav-active')) {
+      mobileNavToogle();
+    }
+  });
 
   /**
    * Hide mobile nav on same-page/hash links
